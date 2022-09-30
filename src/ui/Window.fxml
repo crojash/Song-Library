@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 
 
@@ -15,7 +14,4 @@
         </columns>
       </TableView>
    </right>
-   <top>
-      <TextArea fx:id="textArea" prefHeight="88.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
-   </top>
 </BorderPane>
