@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <TableView prefHeight="563.0" prefWidth="427.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="229.0" text="Name" />
+          <TableColumn fx:id="artist" prefWidth="232.0" text="Artist" />
+        </columns>
+      </TableView>
+   </right>
+</BorderPane>
