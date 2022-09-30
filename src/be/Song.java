@@ -51,6 +51,10 @@ public class Song {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
+	public String toString() {
+		//Formatted to appear in song detail
+		return String.format("%s, %s, %s, %d. ", name, artist, album, year);
+	}
 	
 	
 }
