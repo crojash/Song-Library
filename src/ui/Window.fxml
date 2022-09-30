@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
-
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <right>
-      <TableView prefHeight="563.0" prefWidth="427.0" BorderPane.alignment="CENTER">
+      <TableView prefHeight="483.0" prefWidth="769.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="name" prefWidth="229.0" text="Name" />
           <TableColumn fx:id="artist" prefWidth="232.0" text="Artist" />
         </columns>
       </TableView>
    </right>
+   <bottom>
+      <TextArea fx:id="textArea" prefHeight="80.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <VBox prefHeight="483.0" prefWidth="246.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Button">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="addB" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Add">
+               <VBox.margin>
+                  <Insets left="75.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="editB" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Edit">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteB" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Delete">
+               <VBox.margin>
+                  <Insets left="75.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

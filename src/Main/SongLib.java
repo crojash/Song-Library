@@ -10,7 +10,7 @@ public class SongLib extends Application{
 
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(Main.class.getResource("/ui/Window.fxml"));
+			Parent root = FXMLLoader.load(SongLib.class.getResource("/ui/Window.fxml"));
 			//root.getStylesheets().add("/application/test.css");
 			//primaryStage.initStyle(StageStyle.UNDECORATED);
 			//primaryStage.initModality(Modality.APPLICATION_MODAL);
