@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WindowController">
    <right>
       <TableView prefHeight="483.0" prefWidth="769.0" BorderPane.alignment="CENTER">
         <columns>
@@ -28,17 +28,17 @@
                   <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="addB" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Add">
+            <Button mnemonicParsing="false" onAction="#AddOnAction" prefHeight="34.0" prefWidth="90.0" text="Add">
                <VBox.margin>
                   <Insets left="75.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="editB" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Edit">
+            <Button mnemonicParsing="false" onAction="#editOnAction" prefHeight="34.0" prefWidth="90.0" text="Edit">
                <VBox.margin>
                   <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="deleteB" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Delete">
+            <Button mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="34.0" prefWidth="90.0" text="Delete">
                <VBox.margin>
                   <Insets left="75.0" />
                </VBox.margin>
