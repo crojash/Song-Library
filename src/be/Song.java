@@ -1,14 +1,19 @@
 package be;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Song {
 
-	private String name;
-	private String artist;
-	private String album;
-	private Integer year;
+	private StringProperty name = new SimpleStringProperty();
+	private StringProperty artist = new SimpleStringProperty();
+	private StringProperty album = new SimpleStringProperty();
+	private IntegerProperty year = new SimpleIntegerProperty();
 	
 	//WHen adding the song, name and artist should be entered
-	public Song(String name, String artist) {
+	/*public Song(String name, String artist) {
 		this.name = name;
 		this.artist = artist;
 	}
@@ -18,38 +23,38 @@ public class Song {
 		this.artist = artist;
 		this.album = album;
 		this.year = year;
-	}
+	}*/
 
 	public String getName() {
-		return name;
+		return name.get();
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name.set(name);
 	}
 
 	public String getArtist() {
-		return artist;
+		return artist.get();
 	}
 
 	public void setArtist(String artist) {
-		this.artist = artist;
+		this.artist.set(artist);
 	}
 
 	public String getAlbum() {
-		return album;
+		return album.get();
 	}
 
 	public void setAlbum(String album) {
-		this.album = album;
+		this.album.set(album);
 	}
 
 	public Integer getYear() {
-		return year;
+		return year.get();
 	}
 
 	public void setYear(Integer year) {
-		this.year = year;
+		this.year.set(year);
 	}
 	public String toString() {
 		//Formatted to appear in song detail
