@@ -25,6 +25,13 @@ public class Song {
 		this.year = year;
 	}*/
 
+	/*public Song(String string, String string2, String string3, Integer valueOf) {
+		name.set(string);
+		artist.set(string2);
+		album.set(string3);
+		year.set(valueOf);
+	}*/
+
 	public String getName() {
 		return name.get();
 	}
