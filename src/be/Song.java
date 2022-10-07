@@ -11,8 +11,8 @@ public class Song {
 	/*public Song(String name, String artist) {
 		this.name = name;
 		this.artist = artist;
-	}
-	*/
+	}*/
+	
 	public Song(String name, String artist, String album, Integer year) {
 		this.name = name;
 		this.artist = artist;

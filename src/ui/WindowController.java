@@ -1,42 +1,32 @@
 package ui;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
 
 import be.Song;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.ReadOnlyObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class WindowController {
 
-    @FXML
-    private TextArea textArea;
+	@FXML
+    private Text songText;
     
     @FXML
     private ListView<Song> songList;
     
     private ObservableList<Song> songobsList;
     
-    @FXML
-    private Button tbs;
     
     @FXML
     void AddOnAction(ActionEvent event) {
@@ -85,7 +75,9 @@ public class WindowController {
     	
     	songobsList = FXCollections.observableArrayList(songs);
     	songList.setItems(songobsList);
-    	
+    	songList.disableProperty();
+    	songList.getSelectionModel().select(0);
+    	//songList.getSelectionModel().selectedIndexProperty().addListener((obs,odlVal, newVal) -> showItem(primaryStage));;
     	
     }
 }
