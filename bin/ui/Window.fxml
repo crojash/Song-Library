@@ -14,7 +14,7 @@
    <center>
       <VBox prefHeight="335.0" prefWidth="273.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Button">
+            <Button fx:id="tbs" mnemonicParsing="false" prefHeight="34.0" prefWidth="90.0" text="Show">
                <VBox.margin>
                   <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
                </VBox.margin>
