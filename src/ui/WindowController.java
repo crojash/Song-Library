@@ -86,7 +86,7 @@ public class WindowController {
     		
     		public ListCell<Song> call(ListView<Song> p){
     			
-    			ListCell<Song> cell = new ListCell<Song>() {
+    			ListCell<Song> songCell = new ListCell<Song>() {
     				
     				protected void updateItem(Song s, boolean bln) {
     					super.updateItem(s, bln);
@@ -98,7 +98,7 @@ public class WindowController {
     					}
     				}
     			};
-    			return cell;
+    			return songCell;
     		}
     	});
     	
@@ -107,7 +107,7 @@ public class WindowController {
     	
     	
     	
-    	songList.setItems(songobsList);
+    	songList.setItems(songobsList);*/
     	songList.getSelectionModel().select(0);
     	
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
@@ -119,7 +119,7 @@ public class WindowController {
     		songText.setText(selectedSong.toString());
     		songText.setTextAlignment(TextAlignment.CENTER);
     		
-    	}*/
+    	}
     	
     }
 }
