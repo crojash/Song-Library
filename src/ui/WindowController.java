@@ -1,6 +1,6 @@
 package ui;
 
-import java.awt.Component;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,13 +10,11 @@ import java.util.ArrayList;
 import be.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -26,17 +24,24 @@ public class WindowController {
 
 	@FXML
     private Text songText;
+	
+	@FXML
+    private TextField album;
+
+    @FXML
+    private TextField artist;
+
+    @FXML
+    private TextField name;
+    
+    @FXML
+    private TextField year;
     
     @FXML
     private ListView<Song> songList;
     
     private ObservableList<Song> songobsList;
     
-    
-    @FXML
-    void AddOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void deleteOnAction(ActionEvent event) {
@@ -51,6 +56,7 @@ public class WindowController {
     @FXML
     void SelectOnAction(MouseEvent event) {
     	//textArea.setText(songList.getSelectionModel().getSelectedItem());
+    	songSelected();
     }
     
     @FXML
@@ -115,8 +121,8 @@ public class WindowController {
     	
     	
     	/*
-    	This parts selects the first song in the ListView
-    	
+    	 * This parts selects the first song in the ListView
+    	 * This also set text to the textfields
     	*/
     	songList.getSelectionModel().select(0);
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
@@ -125,7 +131,11 @@ public class WindowController {
     	}
     	else {
     		songText.setText(selectedSong.toString());
-    		songText.setTextAlignment(TextAlignment.CENTER);	
+    		songText.setTextAlignment(TextAlignment.CENTER);
+    		name.setText(selectedSong.getName());
+    		artist.setText(selectedSong.getArtist());
+    		album.setText(selectedSong.getAlbum());
+    		year.setText(String.valueOf(selectedSong.getYear()));
     	}
     	
     	
@@ -135,4 +145,21 @@ public class WindowController {
     	
     	
     }
+    
+    @FXML
+    void AddOnAction(ActionEvent event) {
+    	
+    }
+    
+    public void songSelected() {
+    	Song song = songList.getSelectionModel().getSelectedItem();
+    	if(song == null) {
+    		songText.setText("No Songs in the list");
+    	}
+    	else {
+    		songText.setText(song.toString());
+    		songText.setTextAlignment(TextAlignment.CENTER);
+    	}
+    }
+    
 }
