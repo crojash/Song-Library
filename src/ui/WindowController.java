@@ -12,9 +12,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -53,9 +55,12 @@ public class WindowController {
 
     }
 
+    
+    /*
+     * display selected song in the text
+     * */
     @FXML
     void SelectOnAction(MouseEvent event) {
-    	//textArea.setText(songList.getSelectionModel().getSelectedItem());
     	songSelected();
     }
     
@@ -76,7 +81,7 @@ public class WindowController {
     		while(currentL != null) {
     			
     			String[] line = currentL.split(";");
-    			Song inputSong = new Song(line[0], line[1], line[2], Integer.valueOf(line[3]));
+    			Song inputSong = new Song(line[0].trim(), line[1].trim(), line[2].trim(), line[3].trim());
     			songs.add(inputSong);
     			
     			System.out.println();
@@ -126,16 +131,17 @@ public class WindowController {
     	*/
     	songList.getSelectionModel().select(0);
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
+    	FXCollections.sort(songList,)
     	if(selectedSong == null) {
     		songText.setText("No songs in the list");
     	}
     	else {
     		songText.setText(selectedSong.toString());
     		songText.setTextAlignment(TextAlignment.CENTER);
-    		name.setText(selectedSong.getName());
+    		/*name.setText(selectedSong.getName());
     		artist.setText(selectedSong.getArtist());
     		album.setText(selectedSong.getAlbum());
-    		year.setText(String.valueOf(selectedSong.getYear()));
+    		year.setText(String.valueOf(selectedSong.getYear()));*/
     	}
     	
     	
@@ -148,6 +154,28 @@ public class WindowController {
     
     @FXML
     void AddOnAction(ActionEvent event) {
+    	Song song;
+    	
+    	String Sname = name.getText().trim();
+    	String Sartist = artist.getText().trim();
+    	String Salbum = album.getText().trim();
+    	String Syear = album.getText().trim();
+    
+    		song = new Song(Sname, Sartist, Salbum, Syear);
+    		
+    		if(song.getName() == null && song.getArtist() == null) {
+    			//displayAlert("Not name or astist");
+    			Alert alert = new Alert(AlertType.ERROR);
+    	    	alert.setTitle("Error!");
+    	    	alert.setContentText("Not name or artist");
+    	    	alert.show();
+    		}
+    		
+    		
+    		
+    	
+    	
+    	
     	
     }
     
@@ -160,6 +188,18 @@ public class WindowController {
     		songText.setText(song.toString());
     		songText.setTextAlignment(TextAlignment.CENTER);
     	}
+    }
+    
+    public void displayAlert(String string) {
+    	Alert alert = new Alert(AlertType.WARNING);
+    	alert.setTitle("Error!");
+    	alert.setHeaderText("Error!");
+    	alert.setContentText(string);
+    	alert.showAndWait();
+    }
+    
+    public boolean inputCheck(Song song, boolean a) {
+    	return true;
     }
     
 }
