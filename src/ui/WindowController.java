@@ -56,6 +56,11 @@ public class WindowController {
     @FXML
     private void initialize() throws IOException {
     	
+    	/*
+    	 * Reading from a file
+    	 * Populating the ArrarList 
+    	 * 
+    	 * */
     	ArrayList<Song> songs = new ArrayList<Song>();
     	try{
     		BufferedReader reader = new BufferedReader(new FileReader("src/Songs.txt"));
@@ -78,10 +83,16 @@ public class WindowController {
     		e.printStackTrace();
     	}
     	
-    	
+    	/*
+    	 * creating the observableList and adding it to the ListView
+    	 * */
     	songobsList = FXCollections.observableArrayList(songs);
     	songList.setItems(songobsList);
     	
+    	
+    	/*
+    	 * cellFactory to only show name and artist
+    	 * */
     	songList.setCellFactory(new Callback<ListView<Song>, ListCell<Song>>(){
     		
     		public ListCell<Song> call(ListView<Song> p){
@@ -103,23 +114,25 @@ public class WindowController {
     	});
     	
     	
-    	/*songobsList = FXCollections.observableArrayList(songs);
+    	/*
+    	This parts selects the first song in the ListView
     	
-    	
-    	
-    	songList.setItems(songobsList);*/
+    	*/
     	songList.getSelectionModel().select(0);
-    	
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
-    	
     	if(selectedSong == null) {
     		songText.setText("No songs in the list");
     	}
     	else {
     		songText.setText(selectedSong.toString());
-    		songText.setTextAlignment(TextAlignment.CENTER);
-    		
+    		songText.setTextAlignment(TextAlignment.CENTER);	
     	}
+    	
+    	
+    	
+    	
+    	
+    	
     	
     }
 }
