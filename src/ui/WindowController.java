@@ -14,11 +14,13 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Callback;
 
 public class WindowController {
 
@@ -76,18 +78,37 @@ public class WindowController {
     		e.printStackTrace();
     	}
     	
+    	
     	songobsList = FXCollections.observableArrayList(songs);
-    	/*FilteredList<Song> filteredSongs = new FilteredList<>(songobsList,
-    			item -> item.getName().contains("NewSong"));
-    	if(filteredSongs.size())*/
+    	songList.setItems(songobsList);
+    	
+    	songList.setCellFactory(new Callback<ListView<Song>, ListCell<Song>>(){
+    		
+    		public ListCell<Song> call(ListView<Song> p){
+    			
+    			ListCell<Song> cell = new ListCell<Song>() {
+    				
+    				protected void updateItem(Song s, boolean bln) {
+    					super.updateItem(s, bln);
+    					if(s != null) {
+    						setText(s.getName() + ", " + s.getArtist());
+    					}
+    					else if(s == null) {
+    						setText(null);
+    					}
+    				}
+    			};
+    			return cell;
+    		}
+    	});
+    	
+    	
+    	/*songobsList = FXCollections.observableArrayList(songs);
     	
     	
     	
     	songList.setItems(songobsList);
-    	//songList.disableProperty();
-    	//songList.insetsProperty();
     	songList.getSelectionModel().select(0);
-    	//songList.getSelectionModel().selectedIndexProperty().addListener((obs,odlVal, newVal) -> showItem(initialize));;
     	
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
     	
@@ -98,7 +119,7 @@ public class WindowController {
     		songText.setText(selectedSong.toString());
     		songText.setTextAlignment(TextAlignment.CENTER);
     		
-    	}
+    	}*/
     	
     }
 }
