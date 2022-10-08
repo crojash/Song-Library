@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import be.Song;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 public class WindowController {
 
@@ -74,10 +77,28 @@ public class WindowController {
     	}
     	
     	songobsList = FXCollections.observableArrayList(songs);
+    	/*FilteredList<Song> filteredSongs = new FilteredList<>(songobsList,
+    			item -> item.getName().contains("NewSong"));
+    	if(filteredSongs.size())*/
+    	
+    	
+    	
     	songList.setItems(songobsList);
-    	songList.disableProperty();
+    	//songList.disableProperty();
+    	//songList.insetsProperty();
     	songList.getSelectionModel().select(0);
-    	//songList.getSelectionModel().selectedIndexProperty().addListener((obs,odlVal, newVal) -> showItem(primaryStage));;
+    	//songList.getSelectionModel().selectedIndexProperty().addListener((obs,odlVal, newVal) -> showItem(initialize));;
+    	
+    	Song selectedSong = songList.getSelectionModel().getSelectedItem();
+    	
+    	if(selectedSong == null) {
+    		songText.setText("No songs in the list");
+    	}
+    	else {
+    		songText.setText(selectedSong.toString());
+    		songText.setTextAlignment(TextAlignment.CENTER);
+    		
+    	}
     	
     }
 }

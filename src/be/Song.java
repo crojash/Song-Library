@@ -12,6 +12,9 @@ public class Song {
 		this.name = name;
 		this.artist = artist;
 	}*/
+	public Song() {
+		
+	}
 	
 	public Song(String name, String artist, String album, Integer year) {
 		this.name = name;
