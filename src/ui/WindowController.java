@@ -48,12 +48,6 @@ public class WindowController {
     private ListView<Song> songList;
     
     private ObservableList<Song> songobsList;
-    
-
-    @FXML
-    void deleteOnAction(ActionEvent event) {
-
-    }
 
     @FXML
     void editOnAction(ActionEvent event) {
@@ -136,6 +130,7 @@ public class WindowController {
     	 * This also set text to the textfields
     	 * 
     	*/
+    	songList.getSelectionModel().select(0);
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
     	//FXCollections.sort(songList, new compareSong());
     	if(selectedSong == null) {
@@ -184,7 +179,6 @@ public class WindowController {
     				for(int i = 0; i < songobsList.size(); i++) {
     					writer.write(songobsList.get(i).toString());
     				}
-    				//writer.write(song.toString());
     				writer.close();
     			}
     			else {
@@ -222,7 +216,9 @@ public class WindowController {
     }
     
     
-    
+    /*
+     * Display song selected by the user in the Text field
+     * */
     public void songSelected() {
     	Song song = songList.getSelectionModel().getSelectedItem();
     	if(song == null) {
@@ -234,6 +230,31 @@ public class WindowController {
     	}
     }
     
+     /*
+      *DELETEEEEEEEEEE 
+      * */
+    @FXML
+    void deleteOnAction(ActionEvent event) {
+    	Song song = songList.getSelectionModel().getSelectedItem();
+    	try {
+    		songobsList.remove(song);
+    		BufferedWriter writer = new BufferedWriter(new FileWriter(songFile));
+			
+			for(int i = 0; i < songobsList.size(); i++) {
+				writer.write(songobsList.get(i).toString());
+			}
+			writer.close();
+			//songList.getSelectionModel().select(songList.getSelectionModel().getSelectedIndex());
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.toString());
+    	}
+    }
+    
+    
+    /*
+     * Alert 
+     * */
     public void displayAlert(String string) {
     	Alert alert = new Alert(AlertType.WARNING);
     	alert.setTitle("Error!");
@@ -260,8 +281,12 @@ public class WindowController {
     	alert.setContentText(content);
     	alert.showAndWait();
     }
+    
+    /*
+     * Alert with warning?
+     * */
     private void displayAlertConfirm(String header, String content) {
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	Alert alert = new Alert(AlertType.WARNING);
     	alert.setTitle("Alert");
     	alert.setHeaderText(header);
     	alert.setContentText(content);
