@@ -37,14 +37,22 @@ public class Song {
 	public String getAlbum() {
 		return album;
 	}
+	
+	public void setAlbum(String album) {
+		this.album = album;
+	}
 
 	public String getYear() {
 		return year;
 	}
+	
+	public void setYear(String year) {
+		this.year = year;
+	}
 
 	public String toString() {
 		//Formatted to appear in song detail
-		return String.format("%s, %s, %s, %s. \n", name, artist, album, year);
+		return String.format("%s; %s; %s; %s \n", name, artist, album, year);
 	}
 	
 	

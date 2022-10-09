@@ -49,10 +49,6 @@ public class WindowController {
     
     private ObservableList<Song> songobsList;
 
-    @FXML
-    void editOnAction(ActionEvent event) {
-
-    }
 
     
     /*
@@ -61,6 +57,18 @@ public class WindowController {
     @FXML
     void SelectOnAction(MouseEvent event) {
     	songSelected();
+    	//setText();
+    }
+    
+    @FXML
+    void selectSongOnAction(ActionEvent event) {
+    	setText();
+    	
+    }
+    
+    @FXML
+    void clearOnAction(ActionEvent event) {
+    	clearText();
     }
     
     @FXML
@@ -180,6 +188,7 @@ public class WindowController {
     					writer.write(songobsList.get(i).toString());
     				}
     				writer.close();
+    				clearText();
     			}
     			else {
     				displayAlert("Duplicate Error", "Both song and artist mus be unique");
@@ -252,10 +261,63 @@ public class WindowController {
     }
     
     
+    
+    /*
+     * EDIT Song
+     * */
+    @FXML
+    void editOnAction(ActionEvent event) {
+    	if(!inputCheck()) {
+    		return;
+    	}
+    	
+    	Song song = songList.getSelectionModel().getSelectedItem();
+    	
+    	try {
+    		Song temp = new Song(name.getText().trim(), artist.getText().trim(),
+    				album.getText().trim(), year.getText().trim());
+    		if(song.getName().equals(name.getText()) && song.getArtist().equals(artist.getText())) {
+    			song.setAlbum(album.getText());
+    			song.setYear(year.getText());
+    			
+    			BufferedWriter writer = new BufferedWriter(new FileWriter(songFile));
+    			
+    			for(int i = 0; i < songobsList.size(); i++) {
+    				writer.write(songobsList.get(i).toString());
+    			}
+    			writer.close();
+    			
+    			clearText();
+    			displayAlert("Info", "Song Edited");
+    		}
+    		else if(sortInsert(temp)) {
+    			songobsList.remove(song);
+    			BufferedWriter writer = new BufferedWriter(new FileWriter(songFile));
+				
+				for(int i = 0; i < songobsList.size(); i++) {
+					writer.write(songobsList.get(i).toString());
+				}
+				writer.close();
+				
+				clearText();
+				displayAlert("Info","Song Edited");
+    		}
+    		else {
+    			displayAlert("Error","Both song and artist mus be unique");
+    		}
+    		
+    	}
+    	catch(Exception e) {
+    		System.out.println(e.toString());
+    	}
+    	
+    }
+    
+    
     /*
      * Alert 
      * */
-    public void displayAlert(String string) {
+    private void displayAlert(String string) {
     	Alert alert = new Alert(AlertType.WARNING);
     	alert.setTitle("Error!");
     	alert.setHeaderText("Error!");
@@ -263,7 +325,7 @@ public class WindowController {
     	alert.showAndWait();
     }
     
-    public boolean inputCheck() {
+    private boolean inputCheck() {
     	
     	if(name.getText().isBlank() || artist.getText().isBlank()) {
     		displayAlert("Error!", "Not name or artist");
@@ -291,6 +353,21 @@ public class WindowController {
     	alert.setHeaderText(header);
     	alert.setContentText(content);
     	alert.showAndWait();
+    }
+    
+    private void setText() {
+    	Song song = songList.getSelectionModel().getSelectedItem();
+    	name.setText(song.getName());
+    	artist.setText(song.getArtist());
+    	album.setText(song.getAlbum());
+    	year.setText(song.getYear());
+    }
+    
+    private void clearText() {
+    	name.clear();
+    	artist.clear();
+    	album.clear();
+    	year.clear();
     }
     
 }

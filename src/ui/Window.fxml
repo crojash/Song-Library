@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -14,12 +15,22 @@
          <children>
             <Button mnemonicParsing="false" onAction="#AddOnAction" prefHeight="34.0" prefWidth="90.0" text="Add">
                <VBox.margin>
-                  <Insets left="75.0" />
+                  <Insets bottom="50.0" left="75.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#editOnAction" prefHeight="34.0" prefWidth="90.0" text="Edit">
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#selectSongOnAction" prefHeight="34.0" prefWidth="124.0" text="Select Song">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#editOnAction" prefHeight="33.0" prefWidth="137.0" text="Edit" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#clearOnAction" prefHeight="30.0" prefWidth="110.0" text="Clear Text">
                <VBox.margin>
-                  <Insets bottom="10.0" left="75.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="65.0" />
                </VBox.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="34.0" prefWidth="90.0" text="Delete">
