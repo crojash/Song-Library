@@ -1,5 +1,7 @@
 package be;
 
+import java.util.Comparator;
+
 public class Song {
 
 	private String name;
@@ -42,11 +44,7 @@ public class Song {
 
 	public String toString() {
 		//Formatted to appear in song detail
-		return String.format("%s, %s, %s, %s. ", name, artist, album, year);
-	}
-	
-	public int compareTo(Song s1, Song s2) {
-		
+		return String.format("%s, %s, %s, %s. \n", name, artist, album, year);
 	}
 	
 	

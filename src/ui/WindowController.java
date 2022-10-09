@@ -2,10 +2,13 @@ package ui;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import be.Song;
 import javafx.collections.FXCollections;
@@ -23,6 +26,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Callback;
 
 public class WindowController {
+	
+	String songFile = "src/Songs.txt";
 
 	@FXML
     private Text songText;
@@ -74,7 +79,7 @@ public class WindowController {
     	 * */
     	ArrayList<Song> songs = new ArrayList<Song>();
     	try{
-    		BufferedReader reader = new BufferedReader(new FileReader("src/Songs.txt"));
+    		BufferedReader reader = new BufferedReader(new FileReader(songFile));
     		String currentL = reader.readLine();
     		
     		
@@ -97,6 +102,7 @@ public class WindowController {
     	/*
     	 * creating the observableList and adding it to the ListView
     	 * */
+    	//Collections.sort(songobsList, Collections.reverseOrder());
     	songobsList = FXCollections.observableArrayList(songs);
     	songList.setItems(songobsList);
     	
@@ -128,10 +134,10 @@ public class WindowController {
     	/*
     	 * This parts selects the first song in the ListView
     	 * This also set text to the textfields
+    	 * 
     	*/
-    	songList.getSelectionModel().select(0);
     	Song selectedSong = songList.getSelectionModel().getSelectedItem();
-    	FXCollections.sort(songList,)
+    	//FXCollections.sort(songList, new compareSong());
     	if(selectedSong == null) {
     		songText.setText("No songs in the list");
     	}
@@ -152,6 +158,10 @@ public class WindowController {
     	
     }
     
+    
+    /*
+     * ADDDDDDDDDDDDDDDDDDD
+     * */
     @FXML
     void AddOnAction(ActionEvent event) {
     	Song song;
@@ -163,21 +173,55 @@ public class WindowController {
     
     		song = new Song(Sname, Sartist, Salbum, Syear);
     		
-    		if(song.getName() == null && song.getArtist() == null) {
-    			//displayAlert("Not name or astist");
-    			Alert alert = new Alert(AlertType.ERROR);
-    	    	alert.setTitle("Error!");
-    	    	alert.setContentText("Not name or artist");
-    	    	alert.show();
+    		if(!inputCheck()) {
+    			return;
     		}
-    		
-    		
-    		
-    	
-    	
-    	
-    	
+    		try {
+    			if(sortInsert(song)) {
+    				displayAlertConfirm("Add Song","Song being added: " + Sname);
+    				BufferedWriter writer = new BufferedWriter(new FileWriter(songFile));
+    				
+    				for(int i = 0; i < songobsList.size(); i++) {
+    					writer.write(songobsList.get(i).toString());
+    				}
+    				//writer.write(song.toString());
+    				writer.close();
+    			}
+    			else {
+    				displayAlert("Duplicate Error", "Both song and artist mus be unique");
+    			}
+    		}
+    		catch(Exception e) {
+    			System.out.println(e.toString());
+    		}
     }
+    
+    private boolean sortInsert(Song song) {
+    	
+    	if(songobsList.size() == 0) {
+    		songobsList.add(0, song);
+    		return true;
+    	}
+    	for(int i = 0; i < songobsList.size(); i++) {
+    		if(song.getName().compareToIgnoreCase(songobsList.get(i).getName()) < 0) {
+    			songobsList.add(i, song);
+    			return true;
+    		}
+    		else if(song.getName().compareToIgnoreCase(songobsList.get(i).getName()) == 0) {
+    			if(song.getArtist().compareToIgnoreCase(songobsList.get(i).getArtist()) == 0) {
+    				return false;
+    			}
+    			else if(song.getArtist().compareToIgnoreCase(songobsList.get(i).getArtist()) < 0) {
+    				songobsList.add(i, song);
+    				return true;
+    			}
+    		}
+    	}
+    	songobsList.add(songobsList.size(), song);
+    	return true;
+    }
+    
+    
     
     public void songSelected() {
     	Song song = songList.getSelectionModel().getSelectedItem();
@@ -198,8 +242,30 @@ public class WindowController {
     	alert.showAndWait();
     }
     
-    public boolean inputCheck(Song song, boolean a) {
-    	return true;
+    public boolean inputCheck() {
+    	
+    	if(name.getText().isBlank() || artist.getText().isBlank()) {
+    		displayAlert("Error!", "Not name or artist");
+        	return false;
+    	}
+    	else {
+    		return true;
+    	}
+    }
+    
+    private void displayAlert(String header, String content) {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setTitle("Alert");
+    	alert.setHeaderText(header);
+    	alert.setContentText(content);
+    	alert.showAndWait();
+    }
+    private void displayAlertConfirm(String header, String content) {
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Alert");
+    	alert.setHeaderText(header);
+    	alert.setContentText(content);
+    	alert.showAndWait();
     }
     
 }
