@@ -189,7 +189,7 @@ public class WindowController {
     	String Sname = name.getText().trim();
     	String Sartist = artist.getText().trim();
     	String Salbum = album.getText().trim();
-    	String Syear = album.getText().trim();
+    	String Syear = year.getText().trim();
     
     		song = new Song(Sname, Sartist, Salbum, Syear);
     		
@@ -376,6 +376,10 @@ public class WindowController {
         	return false;
     	}
     	else{
+    		if(Integer.valueOf(year.getText()) < 0) { 
+    			displayAlert("Error", "Year value has to be positive");
+    			return false;
+    		}
     		return true;
     	}
     }
