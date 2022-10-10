@@ -1,7 +1,12 @@
 package be;
 
-import java.util.Comparator;
-
+/*
+ * Song Library
+ * Cesar Rojas Herrera
+ * Abhishek Panwala
+ * 
+ * 
+ * */
 public class Song {
 
 	private String name;
@@ -9,11 +14,6 @@ public class Song {
 	private String album;
 	private String year;
 	
-	//WHen adding the song, name and artist should be entered
-	/*public Song(String name, String artist) {
-		this.name = name;
-		this.artist = artist;
-	}*/
 	public Song() {
 		
 	}
