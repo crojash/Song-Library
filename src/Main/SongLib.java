@@ -1,5 +1,13 @@
 package Main;
 
+/*
+ * Song Library
+ * Cesar Rojas Herrera
+ * Abhishek Panwala
+ * 
+ * 
+ * */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
